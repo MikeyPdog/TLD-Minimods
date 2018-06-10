@@ -14,6 +14,10 @@ Empty Containers are instant to search.
 
 Non-Empty containers are faster to search (0.6 seconds rather than 2 seconds)
 
+## Clothing Repair Mod
+
+Repairing clothing recovers half as much condition. (You must repair clothing 2x as much for the same effect).
+
 ## Donate
 
 If you like any of these mods and would like to say thanks, you can donate here:
