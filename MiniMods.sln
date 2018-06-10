@@ -3,12 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FasterSearching", "FasterSearching\FasterSearching.csproj", "{9CF69C86-0E7F-4B6D-B488-B603DE12A654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothingRepairMod", "ClothingRepairMod\ClothingRepairMod.csproj", "{1BC44507-90E2-4DB5-ACF9-2F909F57F83F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessEffectiveRepairs", "ClothingRepairMod\LessEffectiveRepairs.csproj", "{1BC44507-90E2-4DB5-ACF9-2F909F57F83F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D333A0D0-EB41-404D-964A-BB100EAD1DE6}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SprintCostsFood", "SprintCostsFood\SprintCostsFood.csproj", "{E4BE7626-922A-406B-A154-2AE2E15C9342}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarvingHurts", "StarvingHurts\StarvingHurts.csproj", "{20AAADAF-ECAF-4885-9186-A0E7149514A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessCaloriesNeeded", "LessCaloriesNeeded\LessCaloriesNeeded.csproj", "{0181E5CA-2263-41BE-989A-D0CA7A5674DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +30,18 @@ Global
 		{1BC44507-90E2-4DB5-ACF9-2F909F57F83F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BC44507-90E2-4DB5-ACF9-2F909F57F83F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BC44507-90E2-4DB5-ACF9-2F909F57F83F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4BE7626-922A-406B-A154-2AE2E15C9342}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4BE7626-922A-406B-A154-2AE2E15C9342}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4BE7626-922A-406B-A154-2AE2E15C9342}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4BE7626-922A-406B-A154-2AE2E15C9342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20AAADAF-ECAF-4885-9186-A0E7149514A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20AAADAF-ECAF-4885-9186-A0E7149514A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20AAADAF-ECAF-4885-9186-A0E7149514A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20AAADAF-ECAF-4885-9186-A0E7149514A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0181E5CA-2263-41BE-989A-D0CA7A5674DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0181E5CA-2263-41BE-989A-D0CA7A5674DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0181E5CA-2263-41BE-989A-D0CA7A5674DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0181E5CA-2263-41BE-989A-D0CA7A5674DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

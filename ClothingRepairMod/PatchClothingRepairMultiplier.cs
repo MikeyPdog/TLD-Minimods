@@ -1,6 +1,6 @@
 ﻿using Harmony;
 
-namespace ClothingRepairMod
+namespace LessEffectiveRepairs
 {
     [HarmonyPatch(typeof(Skill_ClothingRepair))]
     [HarmonyPatch("GetItemConditionScale")]
