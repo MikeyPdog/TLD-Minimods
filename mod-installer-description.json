@@ -1,0 +1,73 @@
+{
+	"name": "MikeyPdog TLD-Minimods",
+	"description": "The Long Dark: Mikes Mini Mods",
+	"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+	"releases": [
+		{
+			"name": "Faster Searching",
+			"version": "v2.0",
+			"releaseDate": "2018-06-10",
+			"description": "Empty Containers are instant to search.\nNon-Empty containers are faster to search.",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.0/FasterSearching.dll"
+				}
+			]
+		}, {
+			"name": "Less Effective Repairs",
+			"version": "v2.0",
+			"releaseDate": "2018-06-10",
+			"description": "Repairing clothing repairs half as much condition.",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.0/LessEffectiveRepairs.dll"
+				}
+			]
+		}, {
+			"name": "Sprint Costs Food",
+			"version": "v2.0",
+			"releaseDate": "2018-06-10",
+			"description": "Sprinting uses 5x as much food as normal",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.0/SprintCostsFood.dll"
+				}
+			]
+		}, {
+			"name": "Starving Hurts",
+			"version": "v2.0",
+			"releaseDate": "2018-06-10",
+			"description": "Starving (0 food) causes 5x more damage than normal.",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.0/StarvingHurts.dll"
+				}
+			]
+		}, {
+			"name": "Less Calories Needed",
+			"version": "v2.0",
+			"releaseDate": "2018-06-10",
+			"description": "You use half as many calories as normal.",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.0/LessCaloriesNeeded.dll"
+				}
+			]
+		}
+	]
+}
