@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarvingHurts", "StarvingHu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessCaloriesNeeded", "LessCaloriesNeeded\LessCaloriesNeeded.csproj", "{0181E5CA-2263-41BE-989A-D0CA7A5674DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrostbiteNotPermanent", "FrostbiteNotPermanent\FrostbiteNotPermanent.csproj", "{009293DE-F429-4A19-AABF-A1E053630F4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{0181E5CA-2263-41BE-989A-D0CA7A5674DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0181E5CA-2263-41BE-989A-D0CA7A5674DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0181E5CA-2263-41BE-989A-D0CA7A5674DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{009293DE-F429-4A19-AABF-A1E053630F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{009293DE-F429-4A19-AABF-A1E053630F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{009293DE-F429-4A19-AABF-A1E053630F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{009293DE-F429-4A19-AABF-A1E053630F4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
