@@ -67,6 +67,17 @@ Why?
 * Designed for Interloper games alongside Starving Hurts mod. You can't starve but in return you use less calories. This produces a nice blend of gameplay.
 * Works well with Sprint Costs Food also.
 
+## Frostbite Not Permanent
+
+What?
+
+* Frostbite is no longer permanent. Instead you take -20% condition immediately.
+
+Why?
+
+* It feels too punishing to have a permanent condition hit from frostbite.
+* Frostbite is most likely to occur at the start of a game (e.g. in interloper) and many people just restart their interloper run if they get frostbite right at the start.
+
 ## Donate
 
 If you like any of these mods and would like to say thanks, you can donate here:
