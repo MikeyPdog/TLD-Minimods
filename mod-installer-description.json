@@ -81,6 +81,19 @@
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.1/FrostbiteNotPermanent.dll"
 				}
 			]
+		}, {
+			"name": "Quicker Mapping",
+			"version": "v2.2",
+			"releaseDate": "2018-06-27",
+			"description": "Mapping with charcoal takes 1 in-game minute rather than 15.",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.2/QuickerMapping.dll"
+				}
+			]
 		}
 	]
 }

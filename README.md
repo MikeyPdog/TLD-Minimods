@@ -78,6 +78,17 @@ Why?
 * It feels too punishing to have a permanent condition hit from frostbite.
 * Frostbite is most likely to occur at the start of a game (e.g. in interloper) and many people just restart their interloper run if they get frostbite right at the start.
 
+## Quicker Mapping
+
+What?
+
+* Mapping with charcoal now takes only 1 in-game minute rather than 15.
+
+Why?
+
+* Once you know the maps, 15 mins of ingame time is way too long to be worth it (especially on interloper)
+* This enables players to map for fun without worrying about getting caught in blizzards or losing condition etc.
+
 ## Donate
 
 If you like any of these mods and would like to say thanks, you can donate here:
