@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessCaloriesNeeded", "LessC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrostbiteNotPermanent", "FrostbiteNotPermanent\FrostbiteNotPermanent.csproj", "{009293DE-F429-4A19-AABF-A1E053630F4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickerMapping", "QuickerMapping\QuickerMapping.csproj", "{74E07033-99B5-4A7F-AE4B-EAD9AEFEBDB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{009293DE-F429-4A19-AABF-A1E053630F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{009293DE-F429-4A19-AABF-A1E053630F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{009293DE-F429-4A19-AABF-A1E053630F4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74E07033-99B5-4A7F-AE4B-EAD9AEFEBDB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74E07033-99B5-4A7F-AE4B-EAD9AEFEBDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74E07033-99B5-4A7F-AE4B-EAD9AEFEBDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74E07033-99B5-4A7F-AE4B-EAD9AEFEBDB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
