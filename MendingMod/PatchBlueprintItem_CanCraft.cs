@@ -45,4 +45,46 @@ namespace MendingMod
             return true;
         }
     }
+
+    [HarmonyPatch(typeof (CraftingPage))]
+    [HarmonyPatch("RefreshDescriptionText")]
+    public class Something
+    {
+        private static void Postfix(ref CraftingPage __instance, BlueprintItem ___m_BPI)
+        {
+            if (!___m_BPI)
+            {
+                return;
+            }
+            if (!___m_BPI.m_CraftedResult)
+            {
+                return;
+            }
+
+            if (!MendingHelper.IsClothing(___m_BPI))
+            {
+                return;
+            }
+
+            var mendingLevel = (float)GameManager.GetSkillClothingRepair().GetCurrentTierNumber();
+            if (mendingLevel < 3)
+            {
+                __instance.m_DescriptionLabel.text = "UNLOCKED AT MENDING LEVEL 3";
+            }
+        }
+    }
+
+    public class MendingHelper
+    {
+        public static bool IsClothing(GearItem gearItem)
+        {
+            return gearItem.m_Type == GearTypeEnum.Clothing || gearItem.name == "GEAR_BearSkinBedRoll";
+        }
+
+        public static bool IsClothing(BlueprintItem blueprintItem)
+        {
+            var gearItem = blueprintItem.m_CraftedResult;
+            return IsClothing(gearItem);
+        }
+    }
 }
