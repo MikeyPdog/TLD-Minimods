@@ -1,0 +1,13 @@
+﻿TODO
+----
+
+1. Disallow creating clothing until mending level 2
+--- a) Stop it happening
+--- b) Give error message when you try
+--- c) Show requirement on the UI
+
+2. Reduce starting mending %
+3. Increase mending % for levelling up
+4. Give mending XP for creating clothes
+5. Give mending XP for breaking down curtains
+6. Give mending XP for breaking down towels, clothes

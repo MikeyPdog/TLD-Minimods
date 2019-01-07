@@ -101,6 +101,20 @@
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.3/QuickerMapping.dll"
 				}
 			]
+		}, {
+			"name": "Mending Mod",
+			"version": "v2.3",
+			"releaseDate": "2019-01-06",
+			"description": "Mending XP system overhaul.",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"compatibleWith": "1.41",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.3/MendingMod.dll"
+				}
+			]
 		}
 	]
 }

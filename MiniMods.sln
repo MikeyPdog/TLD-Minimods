@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrostbiteNotPermanent", "Fr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickerMapping", "QuickerMapping\QuickerMapping.csproj", "{74E07033-99B5-4A7F-AE4B-EAD9AEFEBDB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MendingMod", "MendingMod\MendingMod.csproj", "{99D921D3-07F0-4F1C-9E04-44F3C8B87FE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{74E07033-99B5-4A7F-AE4B-EAD9AEFEBDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74E07033-99B5-4A7F-AE4B-EAD9AEFEBDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74E07033-99B5-4A7F-AE4B-EAD9AEFEBDB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99D921D3-07F0-4F1C-9E04-44F3C8B87FE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99D921D3-07F0-4F1C-9E04-44F3C8B87FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99D921D3-07F0-4F1C-9E04-44F3C8B87FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99D921D3-07F0-4F1C-9E04-44F3C8B87FE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
