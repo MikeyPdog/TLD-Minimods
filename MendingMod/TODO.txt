@@ -11,3 +11,11 @@
 4. Give mending XP for creating clothes
 5. Give mending XP for breaking down curtains
 6. Give mending XP for breaking down towels, clothes
+
+
+Should these be separate mods?
+1. (NOT IMPORTANT) Crafting clothes gives mending XP
+2. (NOT IMPORTANT) Recipe books gives more XP
+3. (IMPORTANT) Crafting clothes requires mending levels
+
+Make a text file for settings?

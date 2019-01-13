@@ -14,30 +14,9 @@ namespace MendingMod
                 return false;
             }
 
-            var mendingLevel = (float)GameManager.GetSkillClothingRepair().GetCurrentTierNumber();
-            var gearItem = __instance.m_CraftedResult;
-
-//            Debug.Log("[MendingMod] mendingLevel:" + mendingLevel);
-//            Debug.Log("[MendingMod] Tostring:" + gearItem.ToString());
-//            Debug.Log("[MendingMod] Display name:" + gearItem.m_DisplayName);
-//            Debug.Log("[MendingMod] type:" + gearItem.m_Type);
-//            Debug.Log("[MendingMod] name:" + gearItem.name + " type:" + gearItem.m_Type);
-
-
-            // type:Clothing for most, not the bedroll
-            // name:GEAR_BearSkinBedRoll
-            // name:GEAR_WolfSkinCape
-            // name:GEAR_BearSkinCoat
-            // name:GEAR_MooseHideCloak
-            // name:GEAR_MooseHideBag
-            // name:GEAR_RabbitSkinMittens
-            // name:GEAR_RabbitskinHat
-            // name:GEAR_DeerSkinBoots
-            // name:GEAR_DeerSkinPants
-
-            var isClothing = gearItem.m_Type == GearTypeEnum.Clothing || gearItem.name == "GEAR_BearSkinBedRoll";
-            // Mendinglevel is 0 in code when its 1 in game
-            if (mendingLevel < 2 && isClothing) 
+            var mendingLevel = GameManager.GetSkillClothingRepair().GetCurrentTierNumber();
+            var requiredMendingLevel = MendingHelper.GetRequiredMendingLevel(__instance);
+            if (mendingLevel < requiredMendingLevel)
             {
                 return false;
             }
@@ -48,10 +27,15 @@ namespace MendingMod
 
     [HarmonyPatch(typeof (CraftingPage))]
     [HarmonyPatch("RefreshDescriptionText")]
-    public class Something
+    public class PatchCraftingPageDescriptionText
     {
+        const float WhiteColorValue = 0.7843137f;
+        private static readonly Color WhiteColor = new Color(WhiteColorValue, WhiteColorValue, WhiteColorValue);
+        private static readonly Color RedColor = new Color(0.7f, 0f, 0f);
+
         private static void Postfix(ref CraftingPage __instance, BlueprintItem ___m_BPI)
         {
+            __instance.m_DescriptionLabel.color = WhiteColor;
             if (!___m_BPI)
             {
                 return;
@@ -66,10 +50,14 @@ namespace MendingMod
                 return;
             }
 
+            // Mending levels in code start at 0 rather than 1!
             var mendingLevel = (float)GameManager.GetSkillClothingRepair().GetCurrentTierNumber();
-            if (mendingLevel < 3)
+            var requiredMendingLevel = MendingHelper.GetRequiredMendingLevel(___m_BPI);
+            var displayMendingLevel = requiredMendingLevel + 1;
+            if (mendingLevel < requiredMendingLevel)
             {
-                __instance.m_DescriptionLabel.text = "UNLOCKED AT MENDING LEVEL 3";
+                __instance.m_DescriptionLabel.text = "REQUIRES MENDING LEVEL " + displayMendingLevel;
+                __instance.m_DescriptionLabel.color = RedColor;
             }
         }
     }
@@ -78,13 +66,97 @@ namespace MendingMod
     {
         public static bool IsClothing(GearItem gearItem)
         {
+            if (gearItem == null) return false;
             return gearItem.m_Type == GearTypeEnum.Clothing || gearItem.name == "GEAR_BearSkinBedRoll";
         }
 
         public static bool IsClothing(BlueprintItem blueprintItem)
         {
+            return IsClothing(blueprintItem.m_CraftedResult);
+        }
+
+        public static bool IsBandage(GearItem gearItem)
+        {
+            return gearItem.name == "GEAR_HeavyBandage";
+        }
+        
+        public static void AddMendingXP(int xp)
+        {
+            GameManager.GetSkillsManager().IncrementPointsAndNotify(SkillType.ClothingRepair, xp, SkillsManager.PointAssignmentMode.AssignOnlyInSandbox);
+        }
+
+        public static int GetRequiredMendingLevel(BlueprintItem blueprintItem)
+        {
             var gearItem = blueprintItem.m_CraftedResult;
-            return IsClothing(gearItem);
+            if (!IsClothing(gearItem))
+            {
+                return 0;
+            }
+
+            var name = gearItem.name;
+            switch (name)
+            {
+                // These are code levels not ingame levels. So add 1 for ingame levels.
+                case "GEAR_RabbitSkinMittens": return 0;
+                case "GEAR_RabbitskinHat": return 0;
+                case "GEAR_DeerSkinBoots": return 1;
+                case "GEAR_DeerSkinPants": return 1;
+                case "GEAR_MooseHideBag": return 2;
+                case "GEAR_MooseHideCloak": return 2;
+                case "GEAR_WolfSkinCape": return 3;
+                case "GEAR_BearSkinBedRoll": return 4;
+                case "GEAR_BearSkinCoat": return 4;
+            }
+
+            return 0;
+        }
+
+        public static int GetXpForCrafting(BlueprintItem blueprintItem)
+        {
+            var gearItem = blueprintItem.m_CraftedResult;
+
+            if (IsBandage(gearItem))
+            {
+                return 0;
+            }
+
+            if (!IsClothing(gearItem))
+            {
+                return 0;
+            }
+
+            var name = gearItem.name;
+            switch (name)
+            {
+                case "GEAR_RabbitSkinMittens": return 3;
+                case "GEAR_RabbitskinHat": return 3;
+                case "GEAR_DeerSkinBoots": return 4;
+                case "GEAR_DeerSkinPants": return 4;
+                case "GEAR_MooseHideBag": return 5;
+                case "GEAR_MooseHideCloak": return 5;
+                case "GEAR_WolfSkinCape": return 7;
+                case "GEAR_BearSkinBedRoll": return 8;
+                case "GEAR_BearSkinCoat": return 8;
+            }
+
+            return 3;
+        }
+    }
+
+    [HarmonyPatch(typeof(Panel_Crafting))]
+    [HarmonyPatch("UpdateSkillAfterCrafting")]
+    public class PatchPanel_Crafting
+    {
+        public static bool Prefix(ref Panel_Crafting __instance, bool success, BlueprintItem ___m_OverrideBPI)
+        {
+            if (success)
+            {
+                var selectedBlueprint = ___m_OverrideBPI;
+                var xp = MendingHelper.GetXpForCrafting(selectedBlueprint);
+                MendingHelper.AddMendingXP(xp);
+            }
+
+            return false;
         }
     }
 }
