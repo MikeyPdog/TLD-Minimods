@@ -117,6 +117,11 @@ namespace MendingMod
 
             if (IsBandage(gearItem))
             {
+                var roll = Random.Range(1,3);
+                if (roll == 3)
+                {
+                    return 1;
+                }
                 return 0;
             }
 
