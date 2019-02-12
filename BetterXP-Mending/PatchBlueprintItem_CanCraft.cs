@@ -1,7 +1,7 @@
 ﻿using Harmony;
 using UnityEngine;
 
-namespace MendingMod
+namespace BetterXPMending
 {
     [HarmonyPatch(typeof(BlueprintItem))]
     [HarmonyPatch("CanCraft")]

@@ -102,17 +102,17 @@
 				}
 			]
 		}, {
-			"name": "Mending Mod",
+			"name": "BetterXP - Mending",
 			"version": "v2.3",
 			"releaseDate": "2019-01-06",
-			"description": "Mending XP system overhaul.",
+			"description": "Mending XP is required for crafting clothing:\n* Level 1: Rabbitskin items\n* Level 2: Deerskin items\n* Level 3: Moose hide items\n* Level 4: Wolfskin items\n* Level 5: Bearskin items.\nGive Mending XP for crafting clothing\nSometimes give Mending XP for crafting bandages",
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
 			"changes": "",
 			"compatibleWith": "1.41",
 			"dependencies": [],
 			"assets": [
 				{
-					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.3/MendingMod.dll"
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.3/BetterXP-Mending.dll"
 				}
 			]
 		}

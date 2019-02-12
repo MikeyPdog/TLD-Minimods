@@ -7,8 +7,8 @@
     <ProjectGuid>{99D921D3-07F0-4F1C-9E04-44F3C8B87FE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MendingMod</RootNamespace>
-    <AssemblyName>MendingMod</AssemblyName>
+    <RootNamespace>BetterXPMending</RootNamespace>
+    <AssemblyName>BetterXP-Mending</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,11 +51,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="README.txt" />
     <Content Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y "$(ProjectDir)bin\Release\MendingMod.dll" "D:\Steam\SteamApps\common\TheLongDark\mods\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y "$(ProjectDir)bin\Release\BetterXP-Mending.dll" "D:\Steam\SteamApps\common\TheLongDark\mods\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
