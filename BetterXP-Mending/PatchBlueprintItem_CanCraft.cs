@@ -158,7 +158,10 @@ namespace BetterXPMending
             {
                 var selectedBlueprint = ___m_OverrideBPI;
                 var xp = MendingHelper.GetXpForCrafting(selectedBlueprint);
-                MendingHelper.AddMendingXP(xp);
+                if (xp > 0)
+                {
+                    MendingHelper.AddMendingXP(xp);
+                }
             }
 
             return false;
