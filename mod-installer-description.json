@@ -117,7 +117,7 @@
 			]
 		}, {
 			"name": "Tinder Matters",
-			"version": "v2.5",
+			"version": "v2.51",
 			"releaseDate": "2019-03-02",
 			"description": "Different tinder now affects your chance of lighting a fire.",
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
@@ -126,7 +126,7 @@
 			"dependencies": [],
 			"assets": [
 				{
-					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.5/TinderMatters.dll"
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.51/TinderMatters.dll"
 				}
 			]
 		}
