@@ -115,6 +115,20 @@
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.41/BetterXP-Mending.dll"
 				}
 			]
+		}, {
+			"name": "Tinder Matters",
+			"version": "v2.5",
+			"releaseDate": "2019-03-02",
+			"description": "Different tinder now affects your chance of lighting a fire.",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"compatibleWith": "1.47",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.5/TinderMatters.dll"
+				}
+			]
 		}
 	]
 }
