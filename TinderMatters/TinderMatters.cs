@@ -178,6 +178,10 @@ namespace TinderMatters
 
         public static float GetModifiedFireStartSkillModifier(FuelSourceItem __instance)
         {
+            if (__instance == null)
+            {
+                return -5f;
+            }
             if (__instance.name == "GEAR_NewsprintRoll")
             {
                 return 5f;
