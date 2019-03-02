@@ -108,8 +108,6 @@ namespace TinderMatters
     {
         static void Postfix(FuelSourceItem __instance)
         {
-            // Ze: Maybe any paper > birch bark > tinder plug >> cattails > nothing
-
             if (__instance.name == "GEAR_NewsprintRoll")
             {
                 ChangeFireStartSkillModifier(__instance, 5f);
@@ -124,7 +122,7 @@ namespace TinderMatters
             }
             else if (__instance.name == "GEAR_CashBundle")
             {
-                ChangeFireStartSkillModifier(__instance, 52f);
+                ChangeFireStartSkillModifier(__instance, 2f);
             }
             else if (__instance.name == "GEAR_BarkTinder")
             {
@@ -137,10 +135,6 @@ namespace TinderMatters
             else if (__instance.name == "GEAR_CattailTinder")
             {
                 ChangeFireStartSkillModifier(__instance, -5f);
-            }
-            else
-            {
-//                Debug.LogWarning("[TinderMatters] didnt change: " + __instance.name);
             }
         }
 
@@ -161,7 +155,6 @@ namespace TinderMatters
     {
 
         // COPY of CalclateFireStartSuccess with tinder added
-
         public static float CalculateFireStartSuccess(FireStarterItem starter, FuelSourceItem tinder, FuelSourceItem fuel, FireStarterItem accelerant)
         {
             if (starter == null || fuel == null)
@@ -172,13 +165,51 @@ namespace TinderMatters
             successChance += starter.m_FireStartSkillModifier;
 
             Debug.LogWarning("[TinderMatters] CHECKED: " + tinder.name + " : " + tinder.m_FireStartSkillModifier);
-            successChance += tinder.m_FireStartSkillModifier;
+//            successChance += tinder.m_FireStartSkillModifier;
+            successChance += GetModifiedFireStartSkillModifier(tinder);
             successChance += fuel.m_FireStartSkillModifier;
             if (accelerant)
             {
                 successChance += accelerant.m_FireStartSkillModifier;
             }
             return Mathf.Clamp(successChance, 0f, 100f);
+        }
+
+        public static float GetModifiedFireStartSkillModifier(FuelSourceItem __instance)
+        {
+            if (__instance.name == "GEAR_NewsprintRoll")
+            {
+                return 5f;
+            }
+            else if (__instance.name == "GEAR_PaperStack")
+            {
+                return 2f;
+            }
+            else if (__instance.name == "GEAR_Newsprint")
+            {
+                return 2f;
+            }
+            else if (__instance.name == "GEAR_CashBundle")
+            {
+                return 2f;
+            }
+            else if (__instance.name == "GEAR_BarkTinder")
+            {
+                return 0f;
+            }
+            else if (__instance.name == "GEAR_Tinder")
+            {
+                return -3f;
+            }
+            else if (__instance.name == "GEAR_CattailTinder")
+            {
+                return -5f;
+            }
+            else
+            {
+                Debug.LogWarning("[TinderMatters] MISSING TINDER " + __instance.name);
+                return 0;
+            }
         }
     }
 }
