@@ -180,7 +180,7 @@ namespace TinderMatters
         {
             if (__instance == null)
             {
-                return -5f;
+                return -7f;
             }
             if (__instance.name == "GEAR_NewsprintRoll")
             {
