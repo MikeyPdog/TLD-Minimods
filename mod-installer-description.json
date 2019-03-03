@@ -143,6 +143,20 @@
 					"url": "https://github.com/MikeyPdog/TLD-MouseMod/releases/download/v1.1/MouseMod-v1.1.zip"
 				}
 			]
+		}, {
+			"name": "Quicker Wood Cutting",
+			"version": "v2.6",
+			"releaseDate": "2019-03-03",
+			"description": "Chopping limbs and branches takes less time.",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"compatibleWith": "1.47",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.6/QuickerWoodCutting.dll"
+				}
+			]
 		}
 	]
 }
