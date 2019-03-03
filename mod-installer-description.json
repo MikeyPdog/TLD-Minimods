@@ -145,7 +145,7 @@
 			]
 		}, {
 			"name": "Quicker Wood Cutting",
-			"version": "v2.6",
+			"version": "v2.61",
 			"releaseDate": "2019-03-03",
 			"description": "Chopping limbs and branches takes less time.",
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
@@ -154,7 +154,7 @@
 			"dependencies": [],
 			"assets": [
 				{
-					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.6/QuickerWoodCutting.dll"
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.61/QuickerWoodCutting.dll"
 				}
 			]
 		}
