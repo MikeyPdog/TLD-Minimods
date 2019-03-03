@@ -129,6 +129,20 @@
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.52/TinderMatters.dll"
 				}
 			]
+		}, {
+			"name": "Mouse Mod",
+			"version": "v1.1",
+			"releaseDate": "2019-03-02",
+			"description": "Disable mouse acceleration and tweak mouse smoothing.",
+			"url": "https://github.com/MikeyPdog/TLD-MouseMod/",
+			"changes": "",
+			"compatibleWith": "1.47",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-MouseMod/releases/download/v1.1/MouseMod-v1.1.zip"
+				}
+			]
 		}
 	]
 }
