@@ -157,6 +157,20 @@
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.61/QuickerWoodCutting.dll"
 				}
 			]
+		}, {
+			"name": "Archery Target Practice",
+			"version": "v2.7",
+			"releaseDate": "2019-03-03",
+			"description": "The archery target in pleasant valley can be used to level up archery (only level 1 and 2)",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"compatibleWith": "1.47",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.7/ArcheryTargetPractice.dll"
+				}
+			]
 		}
 	]
 }
