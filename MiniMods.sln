@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumeTorchOnFirestart", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinderMatters", "TinderMatters\TinderMatters.csproj", "{D2C4EF3C-FAE7-4044-B33C-5483225E867F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadWhenHungry", "ReadWhenHungry\ReadWhenHungry.csproj", "{C71A844E-D950-45F4-8040-E07AAC46CE45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{D2C4EF3C-FAE7-4044-B33C-5483225E867F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2C4EF3C-FAE7-4044-B33C-5483225E867F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2C4EF3C-FAE7-4044-B33C-5483225E867F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C71A844E-D950-45F4-8040-E07AAC46CE45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C71A844E-D950-45F4-8040-E07AAC46CE45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C71A844E-D950-45F4-8040-E07AAC46CE45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C71A844E-D950-45F4-8040-E07AAC46CE45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

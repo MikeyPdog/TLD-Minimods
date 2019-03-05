@@ -1,0 +1,37 @@
+**What does it do?**
+
+* ??
+
+&#x200B;
+
+**Reasoning**
+
+??
+
+&#x200B;
+
+**Installation**
+
+* First: Install [https://github.com/zeobviouslyfakeacc/ModLoaderInstaller](https://github.com/zeobviouslyfakeacc/ModLoaderInstaller)
+
+Easy way:
+* Install [https://github.com/WulfMarius/Mod-Installer/releases](https://github.com/WulfMarius/Mod-Installer/releases)
+
+Use the Mod Installer! This will keep your mods to date and bring in any dependencies needed.
+
+Harder way:
+* Download the dll directly: https://github.com/MikeyPdog/TLD-Minimods/releases/tag/v??
+* Make a folder called \mods\ inside Steam\SteamApps\common\TheLongDark
+* Put the dll in there
+
+&#x200B;
+
+**Join the modding discord (and chat to me)**
+
+[https://discord.gg/Wr5yMJP](https://discord.gg/Wr5yMJP)
+
+&#x200B;
+
+**Buy me a cup of coffee**
+
+https://www.paypal.com/cgi-bin/webscr?cmd=\_s-xclick&hosted\_button\_id=B4MTA4JTM8YZN
