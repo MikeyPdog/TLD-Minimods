@@ -12,6 +12,7 @@ namespace ConsumeTorchOnFirestart
             {
                 __instance.m_ConditionDegradeOnUse = 100;
                 __instance.m_ConsumeOnUse = true;
+                __instance.m_FireStartSkillModifier = 15;
             }
         }
     }
