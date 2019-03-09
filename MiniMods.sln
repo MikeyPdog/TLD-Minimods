@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcheryTargetPractice", "Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickerWoodCutting", "QuickerWoodCutting\QuickerWoodCutting.csproj", "{2ED97532-EB7D-4391-9607-498A22B161A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleUseTorches", "SingleUseTorches\SingleUseTorches.csproj", "{84088CA5-4149-4216-91F7-A75B1B3D597B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumeTorchOnFirestart", "ConsumeTorchOnFirestart\ConsumeTorchOnFirestart.csproj", "{84088CA5-4149-4216-91F7-A75B1B3D597B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinderMatters", "TinderMatters\TinderMatters.csproj", "{D2C4EF3C-FAE7-4044-B33C-5483225E867F}"
 EndProject

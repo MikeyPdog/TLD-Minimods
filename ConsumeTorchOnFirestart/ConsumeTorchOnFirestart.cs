@@ -1,10 +1,10 @@
 ﻿using Harmony;
 
-namespace SingleUseTorches
+namespace ConsumeTorchOnFirestart
 {
     [HarmonyPatch(typeof(FireStarterItem))]
     [HarmonyPatch("Start")]
-    class SingleUseTorches
+    class ConsumeTorchOnFirestart
     {
         static void Postfix(FireStarterItem __instance)
         {

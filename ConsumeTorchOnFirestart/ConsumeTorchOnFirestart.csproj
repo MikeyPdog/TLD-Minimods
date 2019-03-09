@@ -7,8 +7,8 @@
     <ProjectGuid>{84088CA5-4149-4216-91F7-A75B1B3D597B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SingleUseTorches</RootNamespace>
-    <AssemblyName>SingleUseTorches</AssemblyName>
+    <RootNamespace>ConsumeTorchOnFirestart</RootNamespace>
+    <AssemblyName>ConsumeTorchOnFirestart</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,12 +47,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SingleUseTorches.cs" />
+    <Compile Include="ConsumeTorchOnFirestart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y "$(ProjectDir)bin\Release\SingleUseTorches.dll" "D:\Steam\SteamApps\common\TheLongDark\mods\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y "$(ProjectDir)bin\Release\ConsumeTorchOnFirestart.dll" "D:\Steam\SteamApps\common\TheLongDark\mods\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
