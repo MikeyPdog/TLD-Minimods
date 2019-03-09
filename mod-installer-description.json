@@ -173,16 +173,16 @@
 			]
 		}, {
 			"name": "ConsumeTorchOnFirestart",
-			"version": "v2.8",
+			"version": "v2.81",
 			"releaseDate": "2019-03-09",
-			"description": "Torches are consumed if you attempt to start a fire with them.\n\nThis removes the exploit whereby you can keep trying to start fires with a single torch, bypassing choice of tinder, matches, books, accelerant etc.\n\nWorks well with TinderMatters mod.",
+			"description": "Torches are consumed if you attempt to start a fire with them. Torches now give +5% chance to start a fire with them.\n\nThis removes the exploit whereby you can keep trying to start fires with a single torch, bypassing choice of tinder, matches, books, accelerant etc.\n\nWorks well with TinderMatters mod.",
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
 			"changes": "",
 			"compatibleWith": "1.47",
 			"dependencies": [],
 			"assets": [
 				{
-					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.8/ConsumeTorchOnFirestart.dll"
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.81/ConsumeTorchOnFirestart.dll"
 				}
 			]
 		}
