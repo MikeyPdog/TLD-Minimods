@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using ModSettings;
 using UnityEngine;
 
-namespace TinderMatters
+namespace JsonModSettings
 {
 
     public abstract class JsonModSettingsBase<T> : ModSettingsBase

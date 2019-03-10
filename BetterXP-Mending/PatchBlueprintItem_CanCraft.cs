@@ -1,4 +1,6 @@
 ﻿using Harmony;
+using JsonModSettings;
+using ModSettings;
 using UnityEngine;
 
 namespace BetterXPMending
@@ -14,7 +16,7 @@ namespace BetterXPMending
                 return false;
             }
 
-            var mendingLevel = GameManager.GetSkillClothingRepair().GetCurrentTierNumber();
+            var mendingLevel = MendingHelper.GetCurrentMendingLevel();
             var requiredMendingLevel = MendingHelper.GetRequiredMendingLevel(__instance);
             if (mendingLevel < requiredMendingLevel)
             {
@@ -50,13 +52,11 @@ namespace BetterXPMending
                 return;
             }
 
-            // Mending levels in code start at 0 rather than 1!
-            var mendingLevel = (float)GameManager.GetSkillClothingRepair().GetCurrentTierNumber();
+            var mendingLevel = MendingHelper.GetCurrentMendingLevel();
             var requiredMendingLevel = MendingHelper.GetRequiredMendingLevel(___m_BPI);
-            var displayMendingLevel = requiredMendingLevel + 1;
             if (mendingLevel < requiredMendingLevel)
             {
-                __instance.m_DescriptionLabel.text = "REQUIRES MENDING LEVEL " + displayMendingLevel;
+                __instance.m_DescriptionLabel.text = "REQUIRES MENDING LEVEL " + requiredMendingLevel;
                 __instance.m_DescriptionLabel.color = RedColor;
             }
         }
@@ -94,19 +94,22 @@ namespace BetterXPMending
             }
 
             var name = gearItem.name;
-            switch (name)
-            {
-                // These are code levels not ingame levels. So add 1 for ingame levels.
-                case "GEAR_RabbitSkinMittens": return 0;
-                case "GEAR_RabbitskinHat": return 0;
-                case "GEAR_DeerSkinBoots": return 1;
-                case "GEAR_DeerSkinPants": return 1;
-                case "GEAR_MooseHideBag": return 2;
-                case "GEAR_MooseHideCloak": return 2;
-                case "GEAR_WolfSkinCape": return 3;
-                case "GEAR_BearSkinBedRoll": return 4;
-                case "GEAR_BearSkinCoat": return 4;
-            }
+            var settings = BetterXPMendingSettings.Instance;
+
+            if (name.StartsWith("GEAR_Rabbit"))
+                return settings.RabbitLevel;
+
+            if (name.StartsWith("GEAR_Deer"))
+                return settings.DeerLevel;
+
+            if (name.StartsWith("GEAR_Moose"))
+                return settings.MooseLevel;
+
+            if (name.StartsWith("GEAR_Wolf"))
+                return settings.WolfLevel;
+
+            if (name.StartsWith("GEAR_Bear"))
+                return settings.BearLevel;
 
             return 0;
         }
@@ -115,7 +118,7 @@ namespace BetterXPMending
         {
             var gearItem = blueprintItem.m_CraftedResult;
 
-            if (IsBandage(gearItem))
+            if (IsBandage(gearItem) && BetterXPMendingSettings.Instance.CraftingBandagesGivesXP)
             {
                 var roll = Random.Range(1,3);
                 if (roll == 3)
@@ -131,20 +134,28 @@ namespace BetterXPMending
             }
 
             var name = gearItem.name;
-            switch (name)
-            {
-                case "GEAR_RabbitSkinMittens": return 3;
-                case "GEAR_RabbitskinHat": return 3;
-                case "GEAR_DeerSkinBoots": return 4;
-                case "GEAR_DeerSkinPants": return 4;
-                case "GEAR_MooseHideBag": return 5;
-                case "GEAR_MooseHideCloak": return 5;
-                case "GEAR_WolfSkinCape": return 7;
-                case "GEAR_BearSkinBedRoll": return 8;
-                case "GEAR_BearSkinCoat": return 8;
-            }
+
+            if (name.StartsWith("GEAR_Rabbit"))
+                return 3;
+
+            if (name.StartsWith("GEAR_Deer"))
+                return 4;
+
+            if (name.StartsWith("GEAR_Moose"))
+                return 5;
+
+            if (name.StartsWith("GEAR_Wolf"))
+                return 7;
+
+            if (name.StartsWith("GEAR_Bear"))
+                return 8;
 
             return 3;
+        }
+
+        public static int GetCurrentMendingLevel()
+        {
+            return GameManager.GetSkillClothingRepair().GetCurrentTierNumber() + 1;
         }
     }
 
@@ -165,6 +176,70 @@ namespace BetterXPMending
             }
 
             return false;
+        }
+    }
+
+
+    internal class BetterXPMendingSettings : JsonModSettingsBase<BetterXPMendingSettings>
+    {
+        [Name("Crafting bandages sometimes give XP")]
+        [Description("Crafting bandages have a 33% chance of giving mending experience.")]
+        public bool CraftingBandagesGivesXP = true;
+
+        [Name("Level required for crafting Rabbit Skin items")]
+        [Description("Mending experience level required for crafting Rabbit Skin items")]
+        [Slider(1, 5)]
+        public int RabbitLevel = 1;
+
+        [Name("Level required for crafting Deer Skin items")]
+        [Description("Mending experience level required for crafting Deer Skin items")]
+        [Slider(1, 5)]
+        public int DeerLevel = 2;
+
+        [Name("Level required for crafting Moose Hide items")]
+        [Description("Mending experience level required for crafting Moose Hide items")]
+        [Slider(1, 5)]
+        public int MooseLevel = 3;
+
+        [Name("Level required for crafting Wolfskin items")]
+        [Description("Mending experience level required for crafting Wolfskin items")]
+        [Slider(1, 5)]
+        public int WolfLevel = 4;
+
+        [Name("Level required for crafting Bearskin items")]
+        [Description("Mending experience level required for crafting Bearskin items")]
+        [Slider(1, 5)]
+        public int BearLevel = 5;
+
+        [Name("XP for crafting Rabbit Skin items")]
+        [Description("Mending experience points for crafting Rabbit Skin items")]
+        [Slider(0, 10)]
+        public int RabbitXp = 3;
+
+        [Name("XP for crafting Deer Hide items")]
+        [Description("Mending experience points for crafting Deer Hide items")]
+        [Slider(0, 10)]
+        public int DeerXp = 4;
+
+        [Name("XP for crafting Moose Hide items")]
+        [Description("Mending experience points for crafting Moose Hide items")]
+        [Slider(0, 10)]
+        public int MooseXp = 5;
+
+        [Name("XP for crafting Wolfskin items")]
+        [Description("Mending experience points for crafting Wolfskin items")]
+        [Slider(0, 10)]
+        public int WolfXp = 7;
+
+        [Name("XP for crafting Bearskin items")]
+        [Description("Mending experience points for crafting Bearskin items")]
+        [Slider(0, 10)]
+        public int BearXp = 8;
+
+
+        public static void OnLoad()
+        {
+            Instance = JsonModSettingsLoader.Load<BetterXPMendingSettings>();
         }
     }
 }
