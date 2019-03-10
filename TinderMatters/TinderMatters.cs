@@ -1,4 +1,5 @@
 ﻿using Harmony;
+using ModSettings;
 using UnityEngine;
 
 namespace TinderMatters
@@ -166,7 +167,7 @@ namespace TinderMatters
             }
             float successChance = GameManager.GetSkillFireStarting().GetBaseChanceSuccess();
             successChance += starter.m_FireStartSkillModifier;
-//            successChance += tinder.m_FireStartSkillModifier;
+//            successChance += tinder.m_FireStartSkillModifier; // old values
             successChance += GetModifiedFireStartSkillModifier(tinder);
             successChance += fuel.m_FireStartSkillModifier;
             if (accelerant)
@@ -178,41 +179,90 @@ namespace TinderMatters
 
         public static float GetModifiedFireStartSkillModifier(FuelSourceItem __instance)
         {
+            var settings = TinderMattersSettings.Instance;
             if (__instance == null) // No tinder at all (level 3+)
             {
-                return -5f;
+                return settings.ModifierNoTinder;
             }
             if (__instance.name == "GEAR_NewsprintRoll")
             {
-                return 5f;
+                return settings.ModifierNewsprintRoll;
             }
             if (__instance.name == "GEAR_PaperStack")
             {
-                return 2f;
+                return settings.ModifierPaperStack;
             }
             if (__instance.name == "GEAR_Newsprint")
             {
-                return 2f;
+                return settings.ModifierNewsprint;
             }
             if (__instance.name == "GEAR_CashBundle")
             {
-                return 2f;
+                return settings.ModifierCashBundle;
             }
             if (__instance.name == "GEAR_BarkTinder")
             {
-                return 5f;
+                return settings.ModifierBirchBark;
             }
             if (__instance.name == "GEAR_Tinder")
             {
-                return -3f;
+                return settings.ModifierTinderPlug;
             }
             if (__instance.name == "GEAR_CattailTinder")
             {
-                return 0f;
+                return settings.ModifierCattailHead;
             }
 
             Debug.LogWarning("[TinderMatters] MISSING TINDER " + __instance.name);
             return 0;
+        }
+    }
+
+    internal class TinderMattersSettings : JsonModSettingsBase<TinderMattersSettings>
+    {
+        [Name("Modifier: No Tinder")]
+        [Description("Fire start modifier for using no tinder (level 3+ firestarting)")]
+        [Slider(-10, 10)]
+        public int ModifierNoTinder = -5;
+
+        [Name("Modifier: Tinder Plug")]
+        [Description("Fire start modifier for Tinder Plug tinder")]
+        [Slider(-10, 10)]
+        public int ModifierTinderPlug = 0;
+
+        [Name("Modifier: Cattail Head")]
+        [Description("Fire start modifier for Cattail Head tinder")]
+        [Slider(-10, 10)]
+        public int ModifierCattailHead = 0;
+
+        [Name("Modifier: Cash Bundle")]
+        [Description("Fire start modifier for Cash Bundle tinder")]
+        [Slider(-10, 10)]
+        public int ModifierCashBundle = 2;
+
+        [Name("Modifier: Stack of Papers")]
+        [Description("Fire start modifier for 'Stack of Papers' tinder")]
+        [Slider(-10, 10)]
+        public int ModifierPaperStack = 2;
+
+        [Name("Modifier: Newsprint")]
+        [Description("Fire start modifier for Newsprint tinder")]
+        [Slider(-10, 10)]
+        public int ModifierNewsprint = 2;
+
+        [Name("Modifier: Newsprint Roll")]
+        [Description("Fire start modifier for Newsprint Roll tinder")]
+        [Slider(-10, 10)]
+        public int ModifierNewsprintRoll = 5;
+
+        [Name("Modifier: Birch Bark")]
+        [Description("Fire start modifier for Birch Bark tinder")]
+        [Slider(-10, 10)]
+        public int ModifierBirchBark = 5;
+
+        public static void OnLoad()
+        {
+            Instance = JsonModSettingsLoader.Load<TinderMattersSettings>();
         }
     }
 }
