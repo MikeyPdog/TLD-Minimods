@@ -54,7 +54,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsonModSettingsBase.cs" />
+    <Compile Include="..\Common\JsonModSettingsBase.cs">
+      <Link>JsonModSettingsBase.cs</Link>
+    </Compile>
     <Compile Include="PatchBlueprintItem_CanCraft.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
