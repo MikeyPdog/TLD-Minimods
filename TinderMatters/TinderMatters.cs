@@ -178,9 +178,9 @@ namespace TinderMatters
 
         public static float GetModifiedFireStartSkillModifier(FuelSourceItem __instance)
         {
-            if (__instance == null)
+            if (__instance == null) // No tinder at all (level 3+)
             {
-                return -7f;
+                return -5f;
             }
             if (__instance.name == "GEAR_NewsprintRoll")
             {
@@ -200,7 +200,7 @@ namespace TinderMatters
             }
             if (__instance.name == "GEAR_BarkTinder")
             {
-                return 0f;
+                return 5f;
             }
             if (__instance.name == "GEAR_Tinder")
             {
@@ -208,7 +208,7 @@ namespace TinderMatters
             }
             if (__instance.name == "GEAR_CattailTinder")
             {
-                return -5f;
+                return 0f;
             }
 
             Debug.LogWarning("[TinderMatters] MISSING TINDER " + __instance.name);
