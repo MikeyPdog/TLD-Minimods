@@ -1,4 +1,6 @@
 ﻿using Harmony;
+using JsonModSettings;
+using ModSettings;
 
 namespace QuickerWoodCutting
 {
@@ -19,6 +21,24 @@ namespace QuickerWoodCutting
             {
                 __instance.m_TimeCostHours /= 3f;
             }
+        }
+    }
+
+    internal class QuickerWoodCuttingSettings : JsonModSettingsBase<QuickerWoodCuttingSettings>
+    {
+        [Name("Speed multiplier when breaking branches")]
+        [Description("Speed multiplier when chopping or breaking branches")]
+        [Slider(1f, 5f, 9)]
+        public float BreakBranchSpeedMultiplier = 2f;
+
+        [Name("Speed multiplier when chopping limbs")]
+        [Description("Speed multiplier when chopping limbs")]
+        [Slider(1f, 5f, 9)]
+        public float BreakLimbSpeedMultiplier = 3f;
+
+        public static void OnLoad()
+        {
+            Instance = JsonModSettingsLoader.Load<QuickerWoodCuttingSettings>();
         }
     }
 }
