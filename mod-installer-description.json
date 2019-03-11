@@ -185,6 +185,20 @@
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.81/ConsumeTorchOnFirestart.dll"
 				}
 			]
+		}, {
+			"name": "ReadWhenHungry",
+			"version": "v3.1",
+			"releaseDate": "2019-03-11",
+			"description": "Provides options to let you read skill books when:\n* You're starving hungry\n* You have an affliction\n* You're completely thirsty\n* You're freezing cold\n* You're below 10% hp\n* You're completely exhausted",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"compatibleWith": "1.47",
+			"dependencies": [],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v3.1/ReadWhenHungry.dll"
+				}
+			]
 		}
 	]
 }
