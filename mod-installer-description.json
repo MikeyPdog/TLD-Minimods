@@ -33,11 +33,11 @@
 			]
 		}, {
 			"name": "Sprint Costs Food",
-			"version": "v2.3",
+			"version": "v3.0",
 			"releaseDate": "2018-06-10",
 			"description": "Sprinting uses 5x as much food as normal",
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
-			"changes": "",
+			"changes": "Added customisable settings to main menu",
 			"compatibleWith": "1.41",
 			"dependencies": [],
 			"assets": [
@@ -47,11 +47,11 @@
 			]
 		}, {
 			"name": "Starving Hurts",
-			"version": "v2.3",
+			"version": "v3.0",
 			"releaseDate": "2018-06-10",
 			"description": "Starving (0 food) causes 5x more damage than normal.",
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
-			"changes": "",
+			"changes": "Added customisable settings to main menu",
 			"compatibleWith": "1.41",
 			"dependencies": [],
 			"assets": [
@@ -103,11 +103,11 @@
 			]
 		}, {
 			"name": "BetterXP - Mending",
-			"version": "v2.41",
+			"version": "v3.0",
 			"releaseDate": "2019-02-18",
 			"description": "Mending XP is required for crafting clothing:\n* Level 1: Rabbitskin items\n* Level 2: Deerskin items\n* Level 3: Moose hide items\n* Level 4: Wolfskin items\n* Level 5: Bearskin items.\nGive Mending XP for crafting clothing\nSometimes give Mending XP for crafting bandages",
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
-			"changes": "",
+			"changes": "Added customisable settings to main menu",
 			"compatibleWith": "1.41",
 			"dependencies": [],
 			"assets": [
@@ -117,16 +117,16 @@
 			]
 		}, {
 			"name": "Tinder Matters",
-			"version": "v2.52",
+			"version": "v3.0",
 			"releaseDate": "2019-03-02",
 			"description": "Different tinder now affects your chance of lighting a fire.",
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
-			"changes": "",
+			"changes": "Added customisable settings to main menu. Bumped birch bark to +5%. Bumped cattails and tinder plug to +0%. Bumped no tinder to -5%.",
 			"compatibleWith": "1.47",
 			"dependencies": [],
 			"assets": [
 				{
-					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.52/TinderMatters.dll"
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v3.0/TinderMatters.dll"
 				}
 			]
 		}, {
@@ -145,16 +145,16 @@
 			]
 		}, {
 			"name": "Quicker Wood Cutting",
-			"version": "v2.61",
+			"version": "v3.0",
 			"releaseDate": "2019-03-03",
 			"description": "Chopping limbs and branches takes less time.",
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
-			"changes": "",
+			"changes": "Added customisable settings to main menu",
 			"compatibleWith": "1.47",
 			"dependencies": [],
 			"assets": [
 				{
-					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.61/QuickerWoodCutting.dll"
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v3.0/QuickerWoodCutting.dll"
 				}
 			]
 		}, {
