@@ -1,4 +1,4 @@
-**What does it do?**
+**Description**
 
 * ??
 
@@ -16,8 +16,7 @@
 
 Easy way:
 * Install [https://github.com/WulfMarius/Mod-Installer/releases](https://github.com/WulfMarius/Mod-Installer/releases)
-
-Use the Mod Installer! This will keep your mods to date and bring in any dependencies needed.
+* Use it! (the Mod Installer). This will keep your mods to date and bring in any dependencies needed.
 
 Harder way:
 * Download the dll directly: https://github.com/MikeyPdog/TLD-Minimods/releases/tag/v??
