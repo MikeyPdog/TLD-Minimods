@@ -1,100 +1,27 @@
 # The Long Dark: Mikes Mini Mods
 
-Small Mods for The Long Dark.
+Mikes (Mostly Mini) Mods for The Long Dark.
 
 ## Installation
 
-Requires The Long Dark Mod Loader: https://github.com/zeobviouslyfakeacc/ModLoaderInstaller
+Requires the Mod Loader: https://github.com/zeobviouslyfakeacc/ModLoaderInstaller
+Requires the Mod Installer: https://github.com/WulfMarius/Mod-Installer/releases
 
-Copy files into your /mods/ folder. Tweak the values of *.txt files (for mods that have a .txt file).
+## Mod list and details
 
-## Faster Searching
+Use the Mod installer to see the latest mods, descriptions and updates.
 
-What?
+## Discord chat ##
 
-* Empty Containers are instant to search.
-* Non-Empty containers are faster to search (0.6 seconds rather than 2 seconds)
-
-Why?
-
-* Experienced players may not want to spend ages clicking on empty cupboards and waiting for progress bars
-* It's a little unbelievable that an empty drawer takes ages to realise its empty.
-
-## Less Effective Repairs
-
-What?
-
-* Repairing clothing repairs half as much condition. (You must repair clothing 2x as much for the same effect).
-
-Why?
-
-* This causes players to make more choices around which clothing to use and repair. Repairing good boots from low condition now takes a reasonable amount of leather.
-* You can use up excess cloth to skill up repairing
-* There is more to do when waiting inside
-* Wolf attacks ripping clothing is more damaging
-
-## Sprint Costs Food
-
-What?
-
-* Sprinting uses 5x as much food as normal
-
-Why?
-
-* You can no longer simply sprint around the map, which forces players to choose when to move from location to location more (is it too cold, etc)
-* Sprinting away from danger is more damaging and causes interesting decisions
-
-## Starving Hurts
-
-What?
-
-* Starving (0 food) causes 5x more damage than normal.
-
-Why?
-
-* Deliberately starving yourself is a common tactic as you don't take much damage and you can starve all day then eat before bed and regain most of your health.
-* Eating food at any time is no longer a 'waste'.
-* You shouldnt have to cook everything in small chunks to avoid eating too much
-
-## Less Calories Needed
-
-What?
-
-* You use half as many calories as normal.
-
-Why?
-
-* Designed for Interloper games alongside Starving Hurts mod. You can't starve but in return you use less calories. This produces a nice blend of gameplay.
-* Works well with Sprint Costs Food also.
-
-## Frostbite Not Permanent
-
-What?
-
-* Frostbite is no longer permanent. Instead you take -20% condition immediately.
-
-Why?
-
-* It feels too punishing to have a permanent condition hit from frostbite.
-* Frostbite is most likely to occur at the start of a game (e.g. in interloper) and many people just restart their interloper run if they get frostbite right at the start.
-
-## Quicker Mapping
-
-What?
-
-* Mapping with charcoal now takes only 1 in-game minute rather than 15.
-
-Why?
-
-* Once you know the maps, 15 mins of ingame time is way too long to be worth it (especially on interloper)
-* This enables players to map for fun without worrying about getting caught in blizzards or losing condition etc.
+https://discord.gg/Wr5yMJP
 
 ## Donate
 
 If you like any of these mods and would like to say thanks, you can donate here:
 
+Buy me a coffee and leave a message: https://www.buymeacoffee.com/mikeypdog 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B4MTA4JTM8YZN)
 
-## Suggestions + feedback
+## Suggestions, feedback
 
-Leave me a reddit message @MikeyPdog or post an issue on GitHub 
+Leave me a reddit message @MikeyPdog, contact me on Discord @MikeyPdog, or post an issue on GitHub
