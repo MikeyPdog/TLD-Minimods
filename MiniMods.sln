@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinderMatters", "TinderMatt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadWhenHungry", "ReadWhenHungry\ReadWhenHungry.csproj", "{C71A844E-D950-45F4-8040-E07AAC46CE45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Malnutrion", "Malnutrion\Malnutrion.csproj", "{B7D9BBE3-DD90-4E99-815D-C4DC257588E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomWhiteout", "CustomWhiteout\CustomWhiteout.csproj", "{20E5B876-5E6C-4C59-ADCA-1FAEDD88E916}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +95,14 @@ Global
 		{C71A844E-D950-45F4-8040-E07AAC46CE45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C71A844E-D950-45F4-8040-E07AAC46CE45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C71A844E-D950-45F4-8040-E07AAC46CE45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7D9BBE3-DD90-4E99-815D-C4DC257588E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7D9BBE3-DD90-4E99-815D-C4DC257588E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7D9BBE3-DD90-4E99-815D-C4DC257588E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7D9BBE3-DD90-4E99-815D-C4DC257588E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20E5B876-5E6C-4C59-ADCA-1FAEDD88E916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20E5B876-5E6C-4C59-ADCA-1FAEDD88E916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20E5B876-5E6C-4C59-ADCA-1FAEDD88E916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20E5B876-5E6C-4C59-ADCA-1FAEDD88E916}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
