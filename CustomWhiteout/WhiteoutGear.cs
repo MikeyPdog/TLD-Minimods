@@ -14,17 +14,19 @@ namespace CustomWhiteout
     class WhiteoutGear
     {
         private static int iteration = 0;
-        private static Dictionary<WhiteoutItem, string> gearItemNamesByWhiteoutItem; 
+        private static Dictionary<WhiteoutItem, string> gearItemNamesByWhiteoutItem;
+        private static Dictionary<WhiteoutLocation, string> locationNamesByWhiteoutLocation; 
 
         private static void Postfix(Action_WhiteoutGearRequirements __instance)
         {
-            PopulateDictionary();
+            PopulateDictionaries();
             var settings = WhiteoutGearSettings.Instance;
             __instance.daysOfFoodRequired = settings.daysOfFoodRequired;
             __instance.numLitersPotableWater = settings.litersWaterRequired;
             __instance.numLitersKerosene = settings.litersKeroseneRequired;
+            __instance.sceneToStockpileItems = locationNamesByWhiteoutLocation[settings.baseLocation];
 
-//            Debug.Log("[WHITEOUT] Required items: " + __instance.requiredItemsList.value.Count);
+//            Debug.Log("[WHITEOUT] Required location: " + __instance.sceneToStockpileItems);
 //            SetRequirement("GEAR_Softwood,GEAR_Hardwood", settings.hardSoftWoodRequired, __instance);
 //            SetRequirement("GEAR_BearSkinBedRoll", settings.bearSkillBedrollRequired, __instance, "Bearskin Bedroll");
 //            Debug.Log("[WHITEOUT] Required items now: " + __instance.requiredItemsList.value.Count);
@@ -106,7 +108,7 @@ namespace CustomWhiteout
 
         }
 
-        private static void PopulateDictionary()
+        private static void PopulateDictionaries()
         {
             gearItemNamesByWhiteoutItem = new Dictionary<WhiteoutItem, string>();
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Arrows, "GEAR_Arrow");
@@ -116,6 +118,7 @@ namespace CustomWhiteout
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Bow, "GEAR_Bow");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Deerskin_Boots, "GEAR_DeerskinBoots");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Deerskin_Pants, "GEAR_DeerskinPants");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Distress_Pistol, "GEAR_FlareGun");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Hatchet, "GEAR_Hatchet,GEAR_HatchetImprovised");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Lantern, "GEAR_KeroseneLampB");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Matches, "GEAR_PackMatches,GEAR_WoodMatches");
@@ -132,6 +135,16 @@ namespace CustomWhiteout
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Stick, "GEAR_Stick");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Tinder, "GEAR_NewsprintRoll,GEAR_PaperStack,GEAR_Newsprint,GEAR_CashBundle,GEAR_BarkTinder,GEAR_Tinder,GEAR_CattailTinder");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Wolfskin_Coat, "GEAR_WolfSkinCape");
+
+            locationNamesByWhiteoutLocation = new Dictionary<WhiteoutLocation, string>();
+            locationNamesByWhiteoutLocation.Add(WhiteoutLocation.CH_QuonsetGarage, "QuonsetGasStation");
+            locationNamesByWhiteoutLocation.Add(WhiteoutLocation.PV_Farmhouse, "FarmHouseA");
+            locationNamesByWhiteoutLocation.Add(WhiteoutLocation.DP_Lighthouse, "LighthouseA");
+            locationNamesByWhiteoutLocation.Add(WhiteoutLocation.MT_MiltonHouse, "GreyMothersHouseA");
+            locationNamesByWhiteoutLocation.Add(WhiteoutLocation.ML_CampOffice, "CampOffice");
+            locationNamesByWhiteoutLocation.Add(WhiteoutLocation.ML_Dam, "Dam");
+            locationNamesByWhiteoutLocation.Add(WhiteoutLocation.PV_SignalHillRadioControl, "RadioControlHut");
+            locationNamesByWhiteoutLocation.Add(WhiteoutLocation.BR_HuntingLodge, "HuntingLodgeA");
         }
 
         private static void AddRequirement(WhiteoutItem item, int numberRequired, Action_WhiteoutGearRequirements instance)
@@ -199,9 +212,13 @@ namespace CustomWhiteout
 
     internal class WhiteoutGearSettings : JsonModSettingsBase<WhiteoutGearSettings>
     {
-        [Name("Days of food required")]
+        [Name("Stockpile location")]
+        [Description("Where to set up your stockpile and collect items (default Quonset Garage)")]
+        public WhiteoutLocation baseLocation = WhiteoutLocation.CH_QuonsetGarage;
+
+        [Name("Days of food")]
         [Description("Days of food required (default 15)")]
-        [Slider(5, 60, 12)]
+        [Slider(5, 100, 20)]
         public int daysOfFoodRequired = 15;
 
         [Name("Liters of water required")]
@@ -214,90 +231,80 @@ namespace CustomWhiteout
         [Slider(1, 20)]
         public int litersKeroseneRequired = 5;
 
-//        [Name("Require Bearskin Bedroll")]
-//        [Description("Require Bearskin Bedroll")]
-//        public bool bearSkillBedrollRequired = false;
-//
-//        [Name("Hard/soft wood required")]
-//        [Description("Pieces of hard/soft wood (fir / cedar) required (default 20)")]
-//        [Slider(5, 100, 20)]
-//        public int hardSoftWoodRequired = 20;
-
 
         [Name("Item 1")]
-        public WhiteoutItem item1 = WhiteoutItem.Reclaimed_Wood;
+        public WhiteoutItem item1 = WhiteoutItem.Soft_or_Hard_Wood;
 
         [Name("Item 1 Number required")]
         [Description("Number of this item required")]
         [Slider(1, 100)]
-        public int item1amount = 30;
-
+        public int item1amount = 20;
 
         [Name("Item 2")]
-        public WhiteoutItem item2 = WhiteoutItem.Stick;
+        public WhiteoutItem item2 = WhiteoutItem.Reclaimed_Wood;
 
         [Name("Item 2 Number required")]
         [Description("Number of this item required")]
         [Slider(1, 100)]
-        public int item2amount = 50;
+        public int item2amount = 30;
 
 
         [Name("Item 3")]
-        public WhiteoutItem item3 = WhiteoutItem.Tinder;
+        public WhiteoutItem item3 = WhiteoutItem.Stick;
 
         [Name("Item 3 Number required")]
         [Description("Number of this item required")]
         [Slider(1, 100)]
-        public int item3amount = 25;
+        public int item3amount = 50;
 
 
         [Name("Item 4")]
-        public WhiteoutItem item4 = WhiteoutItem.Bandages;
+        public WhiteoutItem item4 = WhiteoutItem.Tinder;
 
         [Name("Item 4 Number required")]
         [Description("Number of this item required")]
         [Slider(1, 100)]
-        public int item4amount = 10;
+        public int item4amount = 25;
 
 
         [Name("Item 5")]
-        public WhiteoutItem item5 = WhiteoutItem.Matches;
+        public WhiteoutItem item5 = WhiteoutItem.Bandages;
 
         [Name("Item 5 Number required")]
         [Description("Number of this item required")]
         [Slider(1, 100)]
-        public int item5amount = 25;
+        public int item5amount = 10;
 
 
         [Name("Item 6")]
-        public WhiteoutItem item6 = WhiteoutItem.Rifle;
+        public WhiteoutItem item6 = WhiteoutItem.Matches;
 
         [Name("Item 6 Number required")]
         [Description("Number of this item required")]
         [Slider(1, 100)]
-        public int item6amount = 1;
+        public int item6amount = 25;
 
 
         [Name("Item 7")]
-        public WhiteoutItem item7 = WhiteoutItem.Rifle_Cartridges;
+        public WhiteoutItem item7 = WhiteoutItem.Rifle;
 
         [Name("Item 7 Number required")]
         [Description("Number of this item required")]
         [Slider(1, 100)]
-        public int item7amount = 10;
+        public int item7amount = 1;
 
 
         [Name("Item 8")]
-        public WhiteoutItem item8 = WhiteoutItem.Hatchet;
+        public WhiteoutItem item8 = WhiteoutItem.Rifle_Cartridges;
 
         [Name("Item 8 Number required")]
         [Description("Number of this item required")]
         [Slider(1, 100)]
-        public int item8amount = 1;
+        public int item8amount = 10;
 
 
         [Name("Item 9")]
-        public WhiteoutItem item9 = WhiteoutItem.Lantern;
+        public WhiteoutItem item9 = WhiteoutItem.Hatchet;
 
         [Name("Item 9 Number required")]
         [Description("Number of this item required")]
@@ -306,7 +313,7 @@ namespace CustomWhiteout
 
 
         [Name("Item 10")]
-        public WhiteoutItem item10 = WhiteoutItem.None;
+        public WhiteoutItem item10 = WhiteoutItem.Lantern;
 
         [Name("Item 10 Number required")]
         [Description("Number of this item required")]
@@ -341,11 +348,12 @@ namespace CustomWhiteout
         None,
         Arrows,
         Bandages,
-        Bow,
         Bearskin_Bedroll,
         Birch_Bark,
+        Bow,
         Deerskin_Pants,
         Deerskin_Boots,
+        Distress_Pistol,
         Hatchet,
         Lantern,
         Matches,
@@ -363,6 +371,48 @@ namespace CustomWhiteout
         Tinder,
         Wolfskin_Coat,
     }
+    // More ideas:
+    /*
+     * Distress pistol
+     * heavy hammer
+     * hacksaw
+     * flashlight
+     * mag lens
+     * firestriker
+     * quality tools
+     * hunting knife
+     * Rope
+     * prybar
+     * Sewing kit
+     * Whetstone
+     */
+
+    /* Probably not:
+     * Can opener
+     * Charcoal
+     * Cooking pot
+     * Flare
+     * recycled can
+     * snare
+     * Stone
+     * Torch
+     * */
+
+    internal enum WhiteoutLocation
+    {
+        CH_QuonsetGarage,
+        ML_CampOffice,
+        PV_Farmhouse,
+        PV_SignalHillRadioControl,
+        ML_Dam,
+        BR_HuntingLodge,
+        DP_Lighthouse,
+        MT_MiltonHouse,
+//        MT_ParadiseMeadowsFarmhouse,
+//        TrappersCabin, // ML
+//        MountaineersHut, // TWM
+    }
+
         /*              * 50x Sticks
              * 30x reclaimed wood
              * 20x soft/hard wood
@@ -374,9 +424,6 @@ namespace CustomWhiteout
              * 1x Hatchet
              * 1x Lantern
          */
-
-    // First:
-    // TODO: Change list of gear to collect
 
     // ALSO: Fix bugs
     // - DONE Missing tinder items (paper stack, cash bundle)
