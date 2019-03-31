@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Harmony;
 using MissionTypes;
@@ -24,7 +25,7 @@ namespace CustomWhiteout
             __instance.daysOfFoodRequired = settings.daysOfFoodRequired;
             __instance.numLitersPotableWater = settings.litersWaterRequired;
             __instance.numLitersKerosene = settings.litersKeroseneRequired;
-            __instance.sceneToStockpileItems = locationNamesByWhiteoutLocation[settings.baseLocation];
+            __instance.sceneToStockpileItems = locationNamesByWhiteoutLocation[settings.stockpileLocation];
 
 //            Debug.Log("[WHITEOUT] Required location: " + __instance.sceneToStockpileItems);
 //            SetRequirement("GEAR_Softwood,GEAR_Hardwood", settings.hardSoftWoodRequired, __instance);
@@ -113,17 +114,25 @@ namespace CustomWhiteout
             gearItemNamesByWhiteoutItem = new Dictionary<WhiteoutItem, string>();
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Arrows, "GEAR_Arrow");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Bandages, "GEAR_HeavyBandage,GEAR_OldMansBeardDressing");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Bear_Pelt, "GEAR_BearHide,GEAR_BearHideDried");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Bearskin_Bedroll, "GEAR_BearSkinBedRoll");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Birch_Bark, "GEAR_BarkTinder");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Bow, "GEAR_Bow");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Deer_Hide, "GEAR_LeatherHideDried,GEAR_LeatherHide");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Deerskin_Boots, "GEAR_DeerskinBoots");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Deerskin_Pants, "GEAR_DeerskinPants");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Distress_Pistol, "GEAR_FlareGun");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Flare_Gun_Ammo, "GEAR_FlareGunAmmoSingle");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Fish, "GEAR_RawCohoSalmon,GEAR_CookedCohoSalmon,GEAR_RawLakeWhiteFish,GEAR_CookedLakeWhiteFish,GEAR_RawRainbowTrout,GEAR_CookedRainbowTrout,GEAR_RawSmallMouthBass,GEAR_CookedSmallMouthBass");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Fish_Cooked, "GEAR_CookedCohoSalmon,GEAR_CookedLakeWhiteFish,GEAR_CookedRainbowTrout,GEAR_CookedSmallMouthBass");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Hatchet, "GEAR_Hatchet,GEAR_HatchetImprovised");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Lantern, "GEAR_KeroseneLampB");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Matches, "GEAR_PackMatches,GEAR_WoodMatches");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Milton_Farm_Key, "GEAR_RuralRegionFarmKey");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Moose_Hide, "GEAR_MooseHide,GEAR_MooseHideDried");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Moose_Hide_Bag, "GEAR_MooseHideBag");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Moose_Hide_Cloak, "GEAR_MooseHideCloak");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Rabbit_Pelt, "GEAR_RabbitPelt,GEAR_RabbitPeltDried");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Rabbitskin_Hat, "GEAR_RabbitskinHat");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Rabbitskin_Mittens, "GEAR_RabbitSkinMittens");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Reclaimed_Wood, "GEAR_ReclaimedWoodB");
@@ -134,6 +143,7 @@ namespace CustomWhiteout
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Soft_or_Hard_Wood, "GEAR_Softwood,GEAR_Hardwood");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Stick, "GEAR_Stick");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Tinder, "GEAR_NewsprintRoll,GEAR_PaperStack,GEAR_Newsprint,GEAR_CashBundle,GEAR_BarkTinder,GEAR_Tinder,GEAR_CattailTinder");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Wolf_Pelt, "GEAR_WolfPelt,GEAR_WolfPeltDried"); 
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Wolfskin_Coat, "GEAR_WolfSkinCape");
 
             locationNamesByWhiteoutLocation = new Dictionary<WhiteoutLocation, string>();
@@ -212,9 +222,14 @@ namespace CustomWhiteout
 
     internal class WhiteoutGearSettings : JsonModSettingsBase<WhiteoutGearSettings>
     {
+        [Name("Preset Challenge")]
+        [Description("Preset challenges")]
+        public WhiteoutPreset presetChallenge = WhiteoutPreset.NormalWhiteout;
+
+        [Section("Customise")]
         [Name("Stockpile location")]
-        [Description("Where to set up your stockpile and collect items (default Quonset Garage)")]
-        public WhiteoutLocation baseLocation = WhiteoutLocation.CH_QuonsetGarage;
+        [Description("Where to set up your stockpile and collect items (default: CH Quonset Garage)")]
+        public WhiteoutLocation stockpileLocation = WhiteoutLocation.CH_QuonsetGarage;
 
         [Name("Days of food")]
         [Description("Days of food required (default 15)")]
@@ -341,6 +356,240 @@ namespace CustomWhiteout
         {
             Instance = JsonModSettingsLoader.Load<WhiteoutGearSettings>();
         }
+
+        protected override void OnChange(FieldInfo field, object oldValue, object newValue)
+        {
+            if (field.Name == "presetChallenge")
+            {
+                var preset = (WhiteoutPreset)newValue;
+                if (preset != WhiteoutPreset.Custom)
+                {
+                    ResetValues();
+                }
+
+                switch (preset)
+                {
+                    case WhiteoutPreset.NormalWhiteout:
+                        daysOfFoodRequired = 15;
+                        litersWaterRequired = 25;
+                        litersKeroseneRequired = 5;
+                        AddRequirement(WhiteoutItem.Soft_or_Hard_Wood, 20);
+                        AddRequirement(WhiteoutItem.Reclaimed_Wood, 30);
+                        AddRequirement(WhiteoutItem.Stick, 50);
+                        AddRequirement(WhiteoutItem.Tinder, 25);
+                        AddRequirement(WhiteoutItem.Bandages, 10);
+                        AddRequirement(WhiteoutItem.Matches, 25);
+                        AddRequirement(WhiteoutItem.Rifle, 1);
+                        AddRequirement(WhiteoutItem.Rifle_Cartridges, 10);
+                        AddRequirement(WhiteoutItem.Hatchet, 1);
+                        AddRequirement(WhiteoutItem.Lantern, 1);
+                        break;
+                    case WhiteoutPreset.WeaponCollector:
+                        stockpileLocation = WhiteoutLocation.PV_SignalHillRadioControl;
+                        daysOfFoodRequired = 10;
+                        litersWaterRequired = 10;
+                        litersKeroseneRequired = 1;
+                        AddRequirement(WhiteoutItem.Distress_Pistol, 2);
+                        AddRequirement(WhiteoutItem.Rifle, 2);
+                        AddRequirement(WhiteoutItem.Rifle_Cartridges, 20);
+                        AddRequirement(WhiteoutItem.Bow, 2);
+                        AddRequirement(WhiteoutItem.Arrows, 10);
+                        AddRequirement(WhiteoutItem.Hatchet, 1);
+                        break;
+                    case WhiteoutPreset.Fisherman:
+                        daysOfFoodRequired = 10;
+                        litersWaterRequired = 10;
+                        litersKeroseneRequired = 10;
+                        AddRequirement(WhiteoutItem.Fish, 50);
+                        break;
+                    case WhiteoutPreset.FishermanHard:
+                        daysOfFoodRequired = 10;
+                        litersWaterRequired = 10;
+                        litersKeroseneRequired = 20;
+                        AddRequirement(WhiteoutItem.Fish, 100);
+                        break;
+                    case WhiteoutPreset.Explorer:
+                        stockpileLocation = WhiteoutLocation.BR_HuntingLodge;
+                        daysOfFoodRequired = 25;
+                        litersWaterRequired = 25;
+                        litersKeroseneRequired = 3;
+                        AddRequirement(WhiteoutItem.Milton_Farm_Key, 1);
+                        AddRequirement(WhiteoutItem.Distress_Pistol, 1);
+                        AddRequirement(WhiteoutItem.Bow, 1);
+                        AddRequirement(WhiteoutItem.Arrows, 20);
+                        AddRequirement(WhiteoutItem.Birch_Bark, 10);
+                        AddRequirement(WhiteoutItem.Rosehip_Tea, 10);
+                        AddRequirement(WhiteoutItem.Reishi_Tea, 10);
+                        AddRequirement(WhiteoutItem.Rifle, 1);
+                        AddRequirement(WhiteoutItem.Hatchet, 1);
+                        break;
+                    case WhiteoutPreset.Hunter:
+                        daysOfFoodRequired = 10;
+                        litersWaterRequired = 10;
+                        litersKeroseneRequired = 1;
+                        AddRequirement(WhiteoutItem.Bear_Pelt, 1);
+                        AddRequirement(WhiteoutItem.Wolf_Pelt, 5);
+                        AddRequirement(WhiteoutItem.Deer_Hide, 10);
+                        AddRequirement(WhiteoutItem.Rabbit_Pelt, 10);
+                        break;
+                    case WhiteoutPreset.HunterHard:
+                        daysOfFoodRequired = 10;
+                        litersWaterRequired = 10;
+                        litersKeroseneRequired = 1;
+                        AddRequirement(WhiteoutItem.Bear_Pelt, 2);
+                        AddRequirement(WhiteoutItem.Moose_Hide, 2);
+                        AddRequirement(WhiteoutItem.Wolf_Pelt, 10);
+                        AddRequirement(WhiteoutItem.Deer_Hide, 20);
+                        AddRequirement(WhiteoutItem.Rabbit_Pelt, 20);
+                        break;
+                    case WhiteoutPreset.Nightmare:
+                        daysOfFoodRequired = 30;
+                        litersWaterRequired = 50;
+                        litersKeroseneRequired = 10;
+                        AddRequirement(WhiteoutItem.Distress_Pistol, 1);
+                        AddRequirement(WhiteoutItem.Bearskin_Bedroll, 1);   // 12 days to cure, 17.5 hours to craft
+                        AddRequirement(WhiteoutItem.Moose_Hide_Bag, 1);     // 10 days to cure, 10 hours to craft
+                        AddRequirement(WhiteoutItem.Deerskin_Pants, 1);     // 5 days to cure, 12.5 hours to craft
+                        AddRequirement(WhiteoutItem.Rabbitskin_Hat, 1);     // 3.5 hours to craft
+                        AddRequirement(WhiteoutItem.Arrows, 30);            // 15 hours to craft at forge, plus time to collect 15 scrap metal
+                        AddRequirement(WhiteoutItem.Birch_Bark, 10);
+                        AddRequirement(WhiteoutItem.Soft_or_Hard_Wood, 30); // 45 mins for a limb of 3 pieces so this is 450 mins = about 8 hours of chopping
+                        AddRequirement(WhiteoutItem.Rosehip_Tea, 10);
+                        AddRequirement(WhiteoutItem.Reclaimed_Wood, 50);    // collecting from crates etc gives 8 per hour roughly using hatchet, so this is 6 hours of breaking down
+                        AddRequirement(WhiteoutItem.Matches, 100);
+                        AddRequirement(WhiteoutItem.Bandages, 25);          // cloth = 2 bandages during 20 mins. 6 per hour = 4 hours
+                        break;
+                    case WhiteoutPreset.Custom:
+                        break;
+                }
+            }
+            else
+            {
+                presetChallenge = WhiteoutPreset.Custom;
+            }
+
+            // Call this method to make the newly set field values show up in the GUI!
+            RefreshGUI();
+        }
+
+        private void AddRequirement(WhiteoutItem item, int number)
+        {
+            if (item1 == WhiteoutItem.None)
+            {
+                item1 = item;
+                item1amount = number;
+                return;
+            }
+
+            if (item2 == WhiteoutItem.None)
+            {
+                item2 = item;
+                item2amount = number;
+                return;
+            }
+
+            if (item3 == WhiteoutItem.None)
+            {
+                item3 = item;
+                item3amount = number;
+                return;
+            }
+
+            if (item4 == WhiteoutItem.None)
+            {
+                item4 = item;
+                item4amount = number;
+                return;
+            }
+
+            if (item5 == WhiteoutItem.None)
+            {
+                item5 = item;
+                item5amount = number;
+                return;
+            }
+
+            if (item6 == WhiteoutItem.None)
+            {
+                item6 = item;
+                item6amount = number;
+                return;
+            }
+
+            if (item7 == WhiteoutItem.None)
+            {
+                item7 = item;
+                item7amount = number;
+                return;
+            }
+
+            if (item8 == WhiteoutItem.None)
+            {
+                item8 = item;
+                item8amount = number;
+                return;
+            }
+
+            if (item9 == WhiteoutItem.None)
+            {
+                item9 = item;
+                item9amount = number;
+                return;
+            }
+
+            if (item10 == WhiteoutItem.None)
+            {
+                item10 = item;
+                item10amount = number;
+                return;
+            }
+
+            if (item11 == WhiteoutItem.None)
+            {
+                item11 = item;
+                item11amount = number;
+                return;
+            }
+
+            if (item12 == WhiteoutItem.None)
+            {
+                item12 = item;
+                item12amount = number;
+                return;
+            }
+        }
+
+        private void ResetValues()
+        {
+            stockpileLocation = WhiteoutLocation.CH_QuonsetGarage;
+            daysOfFoodRequired = 10;
+            litersWaterRequired = 10;
+            litersKeroseneRequired = 1;
+            item1 = WhiteoutItem.None;
+            item1amount = 1;
+            item2 = WhiteoutItem.None;
+            item2amount = 1;
+            item3 = WhiteoutItem.None;
+            item3amount = 1;
+            item4 = WhiteoutItem.None;
+            item4amount = 1;
+            item5 = WhiteoutItem.None;
+            item5amount = 1;
+            item6 = WhiteoutItem.None;
+            item6amount = 1;
+            item7 = WhiteoutItem.None;
+            item7amount = 1;
+            item8 = WhiteoutItem.None;
+            item8amount = 1;
+            item9 = WhiteoutItem.None;
+            item9amount = 1;
+            item10 = WhiteoutItem.None;
+            item10amount = 1;
+            item11 = WhiteoutItem.None;
+            item11amount = 1;
+            item12 = WhiteoutItem.None;
+            item12amount = 1;
+        }
     }
 
     internal enum WhiteoutItem
@@ -348,17 +597,26 @@ namespace CustomWhiteout
         None,
         Arrows,
         Bandages,
+        Bear_Pelt, // GEAR_BearHide, GEAR_BearHideDried
         Bearskin_Bedroll,
         Birch_Bark,
         Bow,
+        Deer_Hide, // GEAR_LeatherHideDried, GEAR_LeatherHide // GEAR_WolfPelt, GEAR_WolfPeltDried // GEAR_BearHide, GEAR_BearHideDried
         Deerskin_Pants,
         Deerskin_Boots,
         Distress_Pistol,
+        Distress_Pistol_Ammo,
+        Fish,
+        Fish_Cooked,
+        Flare_Gun_Ammo,
         Hatchet,
         Lantern,
         Matches,
+        Milton_Farm_Key,
+        Moose_Hide, // GEAR_MooseHide, GEAR_MooseHideDried
         Moose_Hide_Bag,
         Moose_Hide_Cloak,
+        Rabbit_Pelt,
         Rabbitskin_Mittens,
         Rabbitskin_Hat,
         Reclaimed_Wood,
@@ -370,6 +628,7 @@ namespace CustomWhiteout
         Stick,
         Tinder,
         Wolfskin_Coat,
+        Wolf_Pelt, // GEAR_WolfPelt, GEAR_WolfPeltDried
     }
     // More ideas:
     /*
@@ -398,22 +657,42 @@ namespace CustomWhiteout
      * Torch
      * */
 
+    internal enum WhiteoutPreset
+    {
+        NormalWhiteout,
+        Explorer,
+        Fisherman,
+        FishermanHard,
+        WeaponCollector,
+        Hunter,
+        HunterHard,
+        Nightmare,
+        Custom,
+    }
+
     internal enum WhiteoutLocation
     {
         CH_QuonsetGarage,
         ML_CampOffice,
+        ML_Dam,
         PV_Farmhouse,
         PV_SignalHillRadioControl,
-        ML_Dam,
         BR_HuntingLodge,
         DP_Lighthouse,
         MT_MiltonHouse,
+
+        // Missing regions: 
+        /*
+         * Forlon Mu
+         * Hushed river valley
+         * TWM
+         */
 //        MT_ParadiseMeadowsFarmhouse,
 //        TrappersCabin, // ML
 //        MountaineersHut, // TWM
     }
 
-        /*              * 50x Sticks
+        /*   * 50x Sticks
              * 30x reclaimed wood
              * 20x soft/hard wood
              * 25x tinder
