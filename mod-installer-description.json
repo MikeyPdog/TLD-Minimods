@@ -39,7 +39,12 @@
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
 			"changes": "Added customisable settings to main menu",
 			"compatibleWith": "1.41",
-			"dependencies": [],
+			"dependencies": [
+				{
+					"name": "ModSettings",
+					"version": "^v1.4"
+				}
+			],
 			"assets": [
 				{
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.3/SprintCostsFood.dll"
@@ -53,7 +58,12 @@
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
 			"changes": "Added customisable settings to main menu",
 			"compatibleWith": "1.41",
-			"dependencies": [],
+			"dependencies": [
+				{
+					"name": "ModSettings",
+					"version": "^v1.4"
+				}
+			],
 			"assets": [
 				{
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.3/StarvingHurts.dll"
@@ -109,7 +119,12 @@
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
 			"changes": "Added customisable settings to main menu",
 			"compatibleWith": "1.41",
-			"dependencies": [],
+			"dependencies": [
+				{
+					"name": "ModSettings",
+					"version": "^v1.4"
+				}
+			],
 			"assets": [
 				{
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.41/BetterXP-Mending.dll"
@@ -123,7 +138,12 @@
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
 			"changes": "Added customisable settings to main menu. Bumped birch bark to +5%. Bumped cattails and tinder plug to +0%. Bumped no tinder to -5%.",
 			"compatibleWith": "1.47",
-			"dependencies": [],
+			"dependencies": [
+				{
+					"name": "ModSettings",
+					"version": "^v1.4"
+				}
+			],
 			"assets": [
 				{
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v3.0/TinderMatters.dll"
@@ -151,7 +171,12 @@
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
 			"changes": "Added customisable settings to main menu",
 			"compatibleWith": "1.47",
-			"dependencies": [],
+			"dependencies": [
+				{
+					"name": "ModSettings",
+					"version": "^v1.4"
+				}
+			],
 			"assets": [
 				{
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v3.0/QuickerWoodCutting.dll"
@@ -193,10 +218,34 @@
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
 			"changes": "Added separate toggle for every affliction separately, check out mod settings in the options.",
 			"compatibleWith": "1.47",
-			"dependencies": [],
+			"dependencies": [
+				{
+					"name": "ModSettings",
+					"version": "^v1.4"
+				}
+			],
 			"assets": [
 				{
 					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v3.2/ReadWhenHungry.dll"
+				}
+			]
+		}, {
+			"name": "Custom Whiteout",
+			"version": "v3.3",
+			"releaseDate": "2019-03-31",
+			"description": "Customise the Whiteout challenge item list and stockpile location.\n\nComes with 6 new preset challenges with 2 harder variants.",
+			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
+			"changes": "",
+			"compatibleWith": "1.47",
+			"dependencies": [
+				{
+					"name": "ModSettings",
+					"version": "^v1.4"
+				}
+			],
+			"assets": [
+				{
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v3.3/CustomWhiteout.dll"
 				}
 			]
 		}
