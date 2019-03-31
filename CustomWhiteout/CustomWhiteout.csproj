@@ -57,7 +57,7 @@
     <Compile Include="..\Common\JsonModSettingsBase.cs">
       <Link>JsonModSettingsBase.cs</Link>
     </Compile>
-    <Compile Include="WhiteoutGear.cs" />
+    <Compile Include="PatchWhiteout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

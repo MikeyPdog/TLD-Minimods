@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Harmony;
 using MissionTypes;
 using ModSettings;
@@ -12,9 +11,8 @@ namespace CustomWhiteout
 {
     [HarmonyPatch(typeof(Action_WhiteoutGearRequirements))]
     [HarmonyPatch("OnExecute")]
-    class WhiteoutGear
+    class PatchWhiteout
     {
-        private static int iteration = 0;
         private static Dictionary<WhiteoutItem, string> gearItemNamesByWhiteoutItem;
         private static Dictionary<WhiteoutLocation, string> locationNamesByWhiteoutLocation; 
 
@@ -32,56 +30,6 @@ namespace CustomWhiteout
 //            SetRequirement("GEAR_BearSkinBedRoll", settings.bearSkillBedrollRequired, __instance, "Bearskin Bedroll");
 //            Debug.Log("[WHITEOUT] Required items now: " + __instance.requiredItemsList.value.Count);
 
-            // CAN ONLY SHOW 2 MORE ITEMS - 15 total
-            // How do I do this?
-            // Item1....6 for just the items
-            // Item1 amount
-
-            /* Normal stuff
-             * days of food     - Find/hunt             Keep
-             * Water            - Make on fire          Maybe
-             * Lamp oil         - Fishing / find        Keep
-             * Soft/hardwood    - Find/chop             Keep
-             * Reclaimed wood   - Break down            Keep
-             * Sticks           - Find in woods         Maybe not
-             * Tinder           - Pointless             No
-             * Bandages         - Easy, get cloth       Maybe
-             * Matches          - Find in houses        Maybe
-             * Rifle            - Find in houses        Maybe
-             * Rifle cartidges  - Find in houses        Maybe
-             * Hatchet          - Find/create           Maybe
-             * Lantern          - Find in houses        Maybe
-             */
-
-            /* SINGLE ITEMS
-             * Rifle
-             * Hatchet
-             * Lantern
-             */
-
-            /* Items single or stacked
-             * 50x Sticks
-             * 30x reclaimed wood
-             * 20x soft/hard wood
-             * 25x tinder
-             * 25x Matches
-             * 10x Bandages
-             * 10x rifle cartridges
-             * 1x Rifle
-             * 1x Hatchet
-             * 1x Lantern
-             * 
-             */
-
-            /* Ideas
-             * Clothing (bearskin etc)
-             * Rose hip / mushroom tea
-             * Birch bark
-             * Climbing ropes
-             * 
-             */
-
-            // __instance.requiredItemsHeaderList;
             ClearItemRequirements(__instance);
             AddRequirement(settings.item1, settings.item1amount,  __instance);
             AddRequirement(settings.item2, settings.item2amount,  __instance);
@@ -95,18 +43,6 @@ namespace CustomWhiteout
             AddRequirement(settings.item10, settings.item10amount,  __instance);
             AddRequirement(settings.item11, settings.item11amount,  __instance);
             AddRequirement(settings.item12, settings.item11amount,  __instance);
-
-//            SetRequirement("GEAR_WolfSkinCape", true, __instance, "Wolfskin Coat");
-//            SetRequirement("GEAR_DeerSkinBoots", true, __instance, "Deerskin Boots");
-//            SetRequirement("GEAR_DeerSkinPants", true, __instance, "Deerskin Pants");
-//
-//
-//            SetRequirement("GEAR_RabbitSkinMittens", true, __instance, "Rabbitskin Mittens");
-//            SetRequirement("GEAR_RabbitskinHat", true, __instance, "Rabbitskin Hat");
-//            SetRequirement("GEAR_MooseHideBag", true, __instance, "Moosehide bag");
-//            SetRequirement("GEAR_Bow", true, __instance, "Bow");
-//            SetRequirement("GEAR_Arrow", 30, __instance, "Arrows");
-
         }
 
         private static void PopulateDictionaries()
@@ -122,16 +58,21 @@ namespace CustomWhiteout
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Deerskin_Boots, "GEAR_DeerskinBoots");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Deerskin_Pants, "GEAR_DeerskinPants");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Distress_Pistol, "GEAR_FlareGun");
-            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Flare_Gun_Ammo, "GEAR_FlareGunAmmoSingle");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Distress_Pistol_Ammo, "GEAR_FlareGunAmmoSingle");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Firestriker, "GEAR_Firestriker");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Fish, "GEAR_RawCohoSalmon,GEAR_CookedCohoSalmon,GEAR_RawLakeWhiteFish,GEAR_CookedLakeWhiteFish,GEAR_RawRainbowTrout,GEAR_CookedRainbowTrout,GEAR_RawSmallMouthBass,GEAR_CookedSmallMouthBass");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Fish_Cooked, "GEAR_CookedCohoSalmon,GEAR_CookedLakeWhiteFish,GEAR_CookedRainbowTrout,GEAR_CookedSmallMouthBass");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Hacksaw, "GEAR_Hacksaw");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Hatchet, "GEAR_Hatchet,GEAR_HatchetImprovised");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.HeavyHammer, "GEAR_Hammer");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Knife, "GEAR_Knife,GEAR_KnifeImprovised");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Lantern, "GEAR_KeroseneLampB");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Matches, "GEAR_PackMatches,GEAR_WoodMatches");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Milton_Farm_Key, "GEAR_RuralRegionFarmKey");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Moose_Hide, "GEAR_MooseHide,GEAR_MooseHideDried");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Moose_Hide_Bag, "GEAR_MooseHideBag");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Moose_Hide_Cloak, "GEAR_MooseHideCloak");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Mountaineering_Rope, "GEAR_Rope");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Rabbit_Pelt, "GEAR_RabbitPelt,GEAR_RabbitPeltDried");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Rabbitskin_Hat, "GEAR_RabbitskinHat");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Rabbitskin_Mittens, "GEAR_RabbitSkinMittens");
@@ -143,6 +84,7 @@ namespace CustomWhiteout
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Soft_or_Hard_Wood, "GEAR_Softwood,GEAR_Hardwood");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Stick, "GEAR_Stick");
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Tinder, "GEAR_NewsprintRoll,GEAR_PaperStack,GEAR_Newsprint,GEAR_CashBundle,GEAR_BarkTinder,GEAR_Tinder,GEAR_CattailTinder");
+            gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Toolbox, "GEAR_SimpleTools,GEAR_HighQualityTools"); 
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Wolf_Pelt, "GEAR_WolfPelt,GEAR_WolfPeltDried"); 
             gearItemNamesByWhiteoutItem.Add(WhiteoutItem.Wolfskin_Coat, "GEAR_WolfSkinCape");
 
@@ -396,13 +338,13 @@ namespace CustomWhiteout
                         AddRequirement(WhiteoutItem.Arrows, 10);
                         AddRequirement(WhiteoutItem.Hatchet, 1);
                         break;
-                    case WhiteoutPreset.Fisherman:
+                    case WhiteoutPreset.Fisher:
                         daysOfFoodRequired = 10;
                         litersWaterRequired = 10;
                         litersKeroseneRequired = 10;
                         AddRequirement(WhiteoutItem.Fish, 50);
                         break;
-                    case WhiteoutPreset.FishermanHard:
+                    case WhiteoutPreset.FisherHard:
                         daysOfFoodRequired = 10;
                         litersWaterRequired = 10;
                         litersKeroseneRequired = 20;
@@ -441,6 +383,12 @@ namespace CustomWhiteout
                         AddRequirement(WhiteoutItem.Wolf_Pelt, 10);
                         AddRequirement(WhiteoutItem.Deer_Hide, 20);
                         AddRequirement(WhiteoutItem.Rabbit_Pelt, 20);
+                        break;
+                    case WhiteoutPreset.RopeCollector:
+                        daysOfFoodRequired = 10;
+                        litersWaterRequired = 10;
+                        litersKeroseneRequired = 1;
+                        AddRequirement(WhiteoutItem.Mountaineering_Rope, 10);
                         break;
                     case WhiteoutPreset.Nightmare:
                         daysOfFoodRequired = 30;
@@ -597,25 +545,29 @@ namespace CustomWhiteout
         None,
         Arrows,
         Bandages,
-        Bear_Pelt, // GEAR_BearHide, GEAR_BearHideDried
+        Bear_Pelt,
         Bearskin_Bedroll,
         Birch_Bark,
         Bow,
-        Deer_Hide, // GEAR_LeatherHideDried, GEAR_LeatherHide // GEAR_WolfPelt, GEAR_WolfPeltDried // GEAR_BearHide, GEAR_BearHideDried
+        Deer_Hide,
         Deerskin_Pants,
         Deerskin_Boots,
         Distress_Pistol,
         Distress_Pistol_Ammo,
+        Firestriker,
         Fish,
         Fish_Cooked,
-        Flare_Gun_Ammo,
+        Hacksaw,
         Hatchet,
+        HeavyHammer,
+        Knife,
         Lantern,
         Matches,
         Milton_Farm_Key,
-        Moose_Hide, // GEAR_MooseHide, GEAR_MooseHideDried
+        Moose_Hide,
         Moose_Hide_Bag,
         Moose_Hide_Cloak,
+        Mountaineering_Rope,
         Rabbit_Pelt,
         Rabbitskin_Mittens,
         Rabbitskin_Hat,
@@ -627,8 +579,9 @@ namespace CustomWhiteout
         Soft_or_Hard_Wood,
         Stick,
         Tinder,
+        Toolbox,
         Wolfskin_Coat,
-        Wolf_Pelt, // GEAR_WolfPelt, GEAR_WolfPeltDried
+        Wolf_Pelt
     }
     // More ideas:
     /*
@@ -661,11 +614,12 @@ namespace CustomWhiteout
     {
         NormalWhiteout,
         Explorer,
-        Fisherman,
-        FishermanHard,
+        Fisher,
+        FisherHard,
         WeaponCollector,
         Hunter,
         HunterHard,
+        RopeCollector,
         Nightmare,
         Custom,
     }
@@ -691,18 +645,6 @@ namespace CustomWhiteout
 //        TrappersCabin, // ML
 //        MountaineersHut, // TWM
     }
-
-        /*   * 50x Sticks
-             * 30x reclaimed wood
-             * 20x soft/hard wood
-             * 25x tinder
-             * 25x Matches
-             * 10x Bandages
-             * 10x rifle cartridges
-             * 1x Rifle
-             * 1x Hatchet
-             * 1x Lantern
-         */
 
     // ALSO: Fix bugs
     // - DONE Missing tinder items (paper stack, cash bundle)
