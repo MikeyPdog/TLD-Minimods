@@ -77,7 +77,12 @@ namespace BetterXPMending
 
         public static bool IsBandage(GearItem gearItem)
         {
-            return gearItem.name == "GEAR_HeavyBandage";
+            return IsBandage(gearItem.name);
+        }
+
+        public static bool IsBandage(string itemName)
+        {
+            return itemName == "GEAR_HeavyBandage";
         }
         
         public static void AddMendingXP(int xp)
@@ -114,13 +119,12 @@ namespace BetterXPMending
             return 0;
         }
 
-        public static int GetXpForCrafting(BlueprintItem blueprintItem)
+        public static int GetXpForCrafting(string itemName)
         {
-            var gearItem = blueprintItem.m_CraftedResult;
-
-            if (IsBandage(gearItem) && BetterXPMendingSettings.Instance.CraftingBandagesGivesXP)
+            var settings = BetterXPMendingSettings.Instance;
+            if (IsBandage(itemName) && settings.CraftingBandagesGivesXP)
             {
-                var roll = Random.Range(1,3);
+                var roll = Random.Range(1, 3);
                 if (roll == 3)
                 {
                     return 1;
@@ -128,29 +132,22 @@ namespace BetterXPMending
                 return 0;
             }
 
-            if (!IsClothing(gearItem))
-            {
-                return 0;
-            }
+            if (itemName.StartsWith("GEAR_Rabbit"))
+                return settings.RabbitXp;
 
-            var name = gearItem.name;
+            if (itemName.StartsWith("GEAR_Deer"))
+                return settings.DeerXp;
 
-            if (name.StartsWith("GEAR_Rabbit"))
-                return 3;
+            if (itemName.StartsWith("GEAR_Moose"))
+                return settings.MooseXp;
 
-            if (name.StartsWith("GEAR_Deer"))
-                return 4;
+            if (itemName.StartsWith("GEAR_Wolf"))
+                return settings.WolfXp;
 
-            if (name.StartsWith("GEAR_Moose"))
-                return 5;
+            if (itemName.StartsWith("GEAR_Bear"))
+                return settings.BearXp;
 
-            if (name.StartsWith("GEAR_Wolf"))
-                return 7;
-
-            if (name.StartsWith("GEAR_Bear"))
-                return 8;
-
-            return 3;
+            return 0;
         }
 
         public static int GetCurrentMendingLevel()
@@ -159,23 +156,18 @@ namespace BetterXPMending
         }
     }
 
-    [HarmonyPatch(typeof(Panel_Crafting))]
-    [HarmonyPatch("UpdateSkillAfterCrafting")]
-    public class PatchPanel_Crafting
+    [HarmonyPatch(typeof(AchievementManager))]
+    [HarmonyPatch("CraftedItem")]
+    public class PatchCrafteditem
     {
-        public static bool Prefix(ref Panel_Crafting __instance, bool success, BlueprintItem ___m_OverrideBPI)
+        public static void Prefix(string itemName)
         {
-            if (success)
+            Debug.Log("[MENDING] Crafted " + itemName);
+            var xp = MendingHelper.GetXpForCrafting(itemName);
+            if (xp > 0)
             {
-                var selectedBlueprint = ___m_OverrideBPI;
-                var xp = MendingHelper.GetXpForCrafting(selectedBlueprint);
-                if (xp > 0)
-                {
-                    MendingHelper.AddMendingXP(xp);
-                }
+                MendingHelper.AddMendingXP(xp);
             }
-
-            return false;
         }
     }
 
