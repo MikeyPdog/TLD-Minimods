@@ -113,11 +113,11 @@
 			]
 		}, {
 			"name": "BetterXP - Mending",
-			"version": "v3.0",
+			"version": "v3.4",
 			"releaseDate": "2019-02-18",
 			"description": "Mending XP is required for crafting clothing:\n* Level 1: Rabbitskin items\n* Level 2: Deerskin items\n* Level 3: Moose hide items\n* Level 4: Wolfskin items\n* Level 5: Bearskin items.\nGive Mending XP for crafting clothing\nSometimes give Mending XP for crafting bandages (customisable)",
 			"url": "https://github.com/MikeyPdog/TLD-Minimods/",
-			"changes": "Added customisable settings to main menu",
+			"changes": "Fix bug where you get mending XP for in progress items (https://github.com/MikeyPdog/TLD-Minimods/issues/1) \nFix bug where the XP setttings in options menu dont apply",
 			"compatibleWith": "1.41",
 			"dependencies": [
 				{
@@ -127,7 +127,7 @@
 			],
 			"assets": [
 				{
-					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v2.41/BetterXP-Mending.dll"
+					"url": "https://github.com/MikeyPdog/TLD-Minimods/releases/download/v3.4/BetterXP-Mending.dll"
 				}
 			]
 		}, {
